@@ -1,27 +1,37 @@
 :root {
-  --bg-main: #050509;
-  --bg-elevated: rgba(15, 15, 25, 0.96);
-  --bg-elevated-soft: rgba(19, 20, 30, 0.92);
-  --border-subtle: rgba(255, 255, 255, 0.09);
-  --border-strong: rgba(255, 255, 255, 0.18);
-  --accent: #9b84ff;
-  --accent-soft: rgba(155, 132, 255, 0.2);
-  --accent-strong: #c8b7ff;
-  --danger: #ff5b7a;
-  --text-main: #f5f5f7;
-  --text-muted: #9b9ba3;
-  --radius-lg: 24px;
-  --radius-md: 16px;
+  --bg-main: #050508;
+  --bg-elevated: rgba(12, 12, 22, 0.97);
+  --bg-elevated-soft: rgba(16, 16, 28, 0.94);
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.16);
+  --accent: #a78bfa;
+  --accent-soft: rgba(167, 139, 250, 0.18);
+  --accent-strong: #c4b5fd;
+  --danger: #f87171;
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --radius-lg: 20px;
+  --radius-md: 14px;
   --radius-pill: 999px;
-  --shadow-soft: 0 22px 80px rgba(0, 0, 0, 0.85);
-  --transition-fast: 0.25s ease-out;
-  --transition-medium: 0.4s ease-out;
+  --shadow-soft: 0 24px 80px rgba(0, 0, 0, 0.88), 0 0 0 1px rgba(255, 255, 255, 0.03);
+  --shadow-card: 0 20px 50px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.04);
+  --transition-fast: 0.22s ease-out;
+  --transition-medium: 0.35s ease-out;
+  --safe-top: env(safe-area-inset-top, 0);
+  --safe-bottom: env(safe-area-inset-bottom, 0);
+  --safe-left: env(safe-area-inset-left, 0);
+  --safe-right: env(safe-area-inset-right, 0);
 }
 
 *,
 *::before,
 *::after {
   box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  touch-action: manipulation;
 }
 
 html,
@@ -33,20 +43,22 @@ body {
 }
 
 body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
-    "Roboto", sans-serif;
-  background: radial-gradient(circle at top, #202032 0, #050509 42%, #000 100%);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", "Roboto", sans-serif;
+  background: radial-gradient(120% 120% at 50% -20%, #2e1a47 0%, #0f0a18 35%, #050508 60%, #000 100%);
   color: var(--text-main);
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .app-root {
   position: relative;
   min-height: 100vh;
+  min-height: 100dvh;
   max-width: 480px;
   margin: 0 auto;
-  padding: 12px 12px 20px;
+  padding: max(12px, var(--safe-top)) max(12px, var(--safe-right)) max(20px, var(--safe-bottom)) max(12px, var(--safe-left));
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -57,11 +69,12 @@ body {
   grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: 8px;
-  padding: 4px 10px;
+  padding: 8px 12px;
+  min-height: 44px;
   border-radius: 999px;
-  background: radial-gradient(circle at top left, #1a1a29, #06040b);
+  background: linear-gradient(145deg, rgba(22, 22, 38, 0.95), rgba(8, 8, 18, 0.98));
   border: 1px solid var(--border-subtle);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
 .app-header__title {
@@ -78,7 +91,7 @@ body {
   display: flex;
   border-radius: var(--radius-lg);
   overflow: hidden;
-  background: radial-gradient(circle at top, #121321, #06050a 52%, #020104);
+  background: linear-gradient(180deg, rgba(18, 18, 32, 0.98) 0%, rgba(8, 8, 16, 0.99) 100%);
   border: 1px solid rgba(255, 255, 255, 0.06);
   box-shadow: var(--shadow-soft);
 }
@@ -107,16 +120,13 @@ body {
   width: 100%;
   max-width: 420px;
   border-radius: var(--radius-lg);
-  background: linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.04),
-      rgba(155, 132, 255, 0.04)
-    ),
-    radial-gradient(circle at top left, rgba(155, 132, 255, 0.14), transparent),
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.035) 0%, rgba(167, 139, 250, 0.04) 100%),
+    radial-gradient(ellipse 80% 50% at 0% 0%, rgba(167, 139, 250, 0.08), transparent),
     var(--bg-elevated-soft);
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.85);
-  padding: 22px 18px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: var(--shadow-card);
+  padding: 24px 20px 20px;
+  backdrop-filter: blur(12px);
 }
 
 .card--centered {
@@ -139,10 +149,11 @@ body {
 
 .title--accent {
   font-size: 18px;
-  background: linear-gradient(120deg, #fdfdfd, #cfd3db, #989fad);
+  background: linear-gradient(135deg, #fff 0%, #e2e8f0 40%, #cbd5e1 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  text-shadow: 0 0 40px rgba(255, 255, 255, 0.08);
 }
 
 .subtitle {
@@ -225,15 +236,17 @@ body {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 12px 14px;
+  padding: 14px 16px;
+  min-height: 48px;
   border-radius: var(--radius-md);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(12, 12, 22, 0.9);
+  background: rgba(15, 15, 28, 0.92);
   color: var(--text-main);
   font-size: 14px;
   cursor: pointer;
-  transition: background 0.2s ease, border-color 0.2s ease, transform 0.12s ease;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.12s ease, box-shadow 0.2s ease;
   text-align: left;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .lang-option:active {
@@ -296,9 +309,10 @@ body {
 .primary-btn {
   border-radius: var(--radius-pill);
   border: none;
-  padding: 12px 18px;
-  background: radial-gradient(circle at top left, #e7ddff, #a28cff);
-  color: #020106;
+  padding: 14px 20px;
+  min-height: 48px;
+  background: linear-gradient(145deg, #e0d4ff 0%, #a78bfa 50%, #8b5cf6 100%);
+  color: #0f0a1a;
   font-size: 15px;
   font-weight: 600;
   letter-spacing: 0.06em;
@@ -308,6 +322,7 @@ body {
   align-items: center;
   justify-content: center;
   gap: 6px;
+  -webkit-tap-highlight-color: transparent;
   box-shadow:
     0 14px 45px rgba(0, 0, 0, 0.9),
     0 0 0 1px rgba(255, 255, 255, 0.16);
@@ -600,7 +615,7 @@ body {
 
 @media (max-width: 360px) {
   .app-root {
-    padding: 8px 8px 16px;
+    padding: max(8px, var(--safe-top)) max(8px, var(--safe-right)) max(16px, var(--safe-bottom)) max(8px, var(--safe-left));
   }
 
   .card {
@@ -613,6 +628,27 @@ body {
 
   .progress-text {
     font-size: 20px;
+  }
+
+  .lang-option {
+    padding: 12px 14px;
+    min-height: 44px;
+  }
+}
+
+@media (min-width: 480px) {
+  .app-root {
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.04);
+  }
+}
+
+@media (pointer: fine) {
+  .lang-option:hover {
+    box-shadow: 0 0 0 1px rgba(167, 139, 250, 0.2);
+  }
+
+  .primary-btn:hover {
+    filter: brightness(1.05);
   }
 }
 

@@ -195,21 +195,18 @@ if (startBtn) {
   });
 }
 
-// User ID
+// User ID — уникальный для каждого пользователя Telegram
 const userIdEl = document.querySelector("[data-user-id]");
 
 function initUserId() {
-  if (state.userId && userIdEl) {
-    userIdEl.textContent = state.userId;
-    return;
+  const telegramUserId = tg?.initDataUnsafe?.user?.id;
+  if (telegramUserId != null) {
+    state.userId = String(telegramUserId);
   }
-  const stored = localStorage.getItem("pss_user_id");
-  if (stored) {
-    state.userId = stored;
-  } else {
-    const randomId = String(Math.floor(100000 + Math.random() * 900000));
-    state.userId = randomId;
-    localStorage.setItem("pss_user_id", randomId);
+  if (!state.userId) {
+    const stored = localStorage.getItem("pss_user_id");
+    if (stored) state.userId = stored;
+    else state.userId = "—";
   }
   if (userIdEl) {
     userIdEl.textContent = state.userId;
@@ -265,7 +262,7 @@ const networksByCurrency = {
   USDT: ["TRC20", "ERC20", "BEP20"],
   TON: ["TON"],
   BTC: ["Bitcoin"],
-  ETH: ["ERC20"],
+  TRX: ["TRON"],
 };
 
 function renderNetworks(currency, networkGroupEl, paymentState) {
@@ -473,16 +470,14 @@ if (paySecondBtn) {
   });
 }
 
-// Get API URL
+// Get API URL: приоритет — сервер бота (data-api-url), иначе текущий домен (Vercel) или localhost
 function getApiUrl() {
   const apiUrlAttr = document.documentElement.getAttribute("data-api-url");
-  if (apiUrlAttr) {
-    return apiUrlAttr;
+  if (apiUrlAttr && apiUrlAttr.trim()) {
+    return apiUrlAttr.trim();
   }
-
   if (window.location.protocol === "https:") {
     return window.location.origin;
   }
-
   return "http://localhost:8080";
 }

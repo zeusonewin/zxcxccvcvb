@@ -7,7 +7,7 @@
 const XROCKET_BASE = "https://pay.xrocket.tg";
 const COINGECKO_IDS = {
   BTC: "bitcoin",
-  ETH: "ethereum",
+  TRX: "tron",
   TON: "the-open-network",
   LTC: "litecoin",
 };
@@ -15,10 +15,10 @@ const COINGECKO_IDS = {
 function roundCryptoAmount(amount, currency) {
   if (currency === "USDT") return Math.round(amount * 100) / 100;
   if (currency === "BTC") return Math.round(amount * 1e8) / 1e8;
-  if (currency === "ETH") return Math.round(amount * 1e6) / 1e6;
+  if (currency === "TRX") return Math.round(amount * 100) / 100;
   if (currency === "TON") return Math.round(amount * 100) / 100;
   if (currency === "LTC") return Math.round(amount * 1e6) / 1e6;
-  return Math.round(amount * 1e6) / 1e6;
+  return Math.round(amount * 100) / 100;
 }
 
 async function getUsdRates() {
@@ -82,7 +82,7 @@ export default async function handler(req, res) {
     return res.status(400).json({ success: false, error: "user_id is required" });
   }
 
-  const allowed = ["USDT", "TON", "BTC", "ETH", "LTC"];
+  const allowed = ["USDT", "TON", "BTC", "TRX", "LTC"];
   if (!allowed.includes(currency)) {
     return res.status(400).json({ success: false, error: `Unsupported currency: ${currency}` });
   }
