@@ -1,7 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap');
+
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background: linear-gradient(to bottom, #000000, #111111);
+  font-family: 'Orbitron', sans-serif;
+  background: radial-gradient(circle at 20% 0%, #1a1a1a, #000 60%);
   color: white;
   display: flex;
   justify-content: center;
@@ -15,59 +17,89 @@ body {
   padding: 20px;
 }
 
+/* METALLIC TITLE */
+
 .title {
   text-align: center;
   font-size: 22px;
-  margin-bottom: 20px;
-  color: #d9d9d9;
+  margin-bottom: 8px;
+  background: linear-gradient(90deg,#7f7f7f,#fff,#bfbfbf,#fff,#7f7f7f);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 2px;
+  text-shadow: 0 0 20px rgba(255,255,255,0.2);
 }
+
+.subtitle {
+  text-align: center;
+  color: #888;
+  font-size: 12px;
+  margin-bottom: 25px;
+}
+
+/* LANGUAGE GRID */
 
 .grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
+  gap: 14px;
 }
 
 .button {
-  padding: 12px;
-  border: 1px solid #aaa;
-  border-radius: 16px;
-  background: #111;
-  color: white;
-  cursor: pointer;
+  padding: 14px;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
   text-align: center;
+  cursor: pointer;
+  transition: 0.2s;
 }
 
 .button:hover {
-  background: #1a1a1a;
+  transform: scale(0.97);
+  box-shadow: 0 0 15px rgba(0,255,255,0.4);
 }
 
 .primary {
-  background: white;
-  color: black;
+  background: linear-gradient(90deg,#00f0ff,#0066ff);
+  color: white;
+  border: none;
   font-weight: bold;
+  box-shadow: 0 0 20px rgba(0,255,255,0.5);
 }
 
-.block {
-  border: 1px solid #444;
-  border-radius: 16px;
-  padding: 15px;
-  margin-bottom: 15px;
+/* CARD */
+
+.card {
+  background: rgba(255,255,255,0.05);
+  border-radius: 18px;
+  padding: 18px;
+  margin-top: 20px;
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(0,255,255,0.2);
+  box-shadow: 0 0 25px rgba(0,255,255,0.1);
 }
+
+/* ID */
+
+.id {
+  font-size: 20px;
+  letter-spacing: 3px;
+  text-align: center;
+  margin-top: 10px;
+  color: #00f0ff;
+}
+
+/* SELECT */
 
 select {
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   border-radius: 12px;
-  background: #111;
+  background: rgba(0,0,0,0.6);
   color: white;
-  border: 1px solid #444;
+  border: 1px solid rgba(0,255,255,0.3);
+  margin-top: 10px;
 }
-
-.nav {
-  margin-top: 15px;
-  display: flex;
-  justify-content: space-between;
-}
-
 
