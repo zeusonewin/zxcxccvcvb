@@ -40,7 +40,10 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
+  height: 100dvh;
   width: 100%;
+  overflow: hidden;
+  -webkit-overflow-scrolling: touch;
 }
 
 body {
@@ -50,23 +53,25 @@ body {
     radial-gradient(ellipse 80% 60% at 80% 100%, rgba(20, 15, 45, 0.4) 0%, transparent 45%),
     linear-gradient(180deg, #050508 0%, #000000 100%);
   color: var(--text-main);
-  overflow-x: hidden;
-  overflow-y: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 500;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .app-root {
   position: relative;
-  min-height: 100vh;
+  height: 100%;
   min-height: 100dvh;
+  max-height: 100dvh;
   max-width: 480px;
   margin: 0 auto;
-  padding: max(12px, var(--safe-top)) max(12px, var(--safe-right)) max(20px, var(--safe-bottom)) max(12px, var(--safe-left));
+  padding: max(12px, var(--safe-top)) max(12px, var(--safe-right)) max(12px, var(--safe-bottom)) max(12px, var(--safe-left));
   display: flex;
   flex-direction: column;
   gap: 8px;
+  overflow: hidden;
 }
 
 .app-header {
@@ -84,15 +89,20 @@ body {
 
 .app-header__title {
   text-align: center;
-  font-size: 11px;
-  letter-spacing: 0.18em;
+  font-size: clamp(9px, 2.2vw, 11px);
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.6);
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .app-main {
   position: relative;
   flex: 1;
+  min-height: 0;
   display: flex;
   border-radius: var(--radius-lg);
   overflow: hidden;
@@ -104,7 +114,7 @@ body {
 .screen {
   position: absolute;
   inset: 0;
-  padding: 18px 16px 18px;
+  padding: 12px 14px 14px;
   opacity: 0;
   pointer-events: none;
   transform: translateX(8px);
@@ -112,6 +122,11 @@ body {
     opacity var(--transition-medium),
     transform var(--transition-medium);
   display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
 }
 
 .screen--active {
@@ -123,12 +138,13 @@ body {
 .card {
   margin: auto;
   width: 100%;
+  min-width: 0;
   max-width: 420px;
   border-radius: var(--radius-lg);
   background: linear-gradient(165deg, rgba(15, 15, 28, 0.95) 0%, rgba(5, 5, 15, 0.98) 100%);
   border: 1px solid rgba(255, 255, 255, 0.07);
   box-shadow: var(--shadow-card);
-  padding: 24px 20px 20px;
+  padding: clamp(16px, 4vw, 24px) clamp(14px, 3.5vw, 20px) clamp(14px, 3.5vw, 20px);
   backdrop-filter: blur(16px);
 }
 
@@ -140,38 +156,48 @@ body {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  min-width: 0;
 }
 
 .title {
   margin: 0 0 8px;
-  font-size: 18px;
+  font-size: clamp(14px, 3.8vw, 18px);
   font-weight: 700;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--text-main);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
 .title--accent {
-  font-size: 17px;
+  font-size: clamp(14px, 3.6vw, 17px);
   font-weight: 700;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.18em;
   color: #ffffff;
   text-shadow: 0 0 30px rgba(255, 255, 255, 0.12);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .subtitle {
   margin: 0 0 18px;
   color: var(--text-muted);
-  font-size: 14px;
+  font-size: clamp(12px, 2.8vw, 14px);
   font-weight: 500;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .body-text {
   margin: 0 0 8px;
-  font-size: 14px;
+  font-size: clamp(12px, 2.8vw, 14px);
   line-height: 1.55;
   color: rgba(255, 255, 255, 0.92);
   font-weight: 500;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .body-text--muted {
@@ -182,12 +208,15 @@ body {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  min-width: 0;
 }
 
 .section-title {
   margin: 0 0 4px;
-  font-size: 15px;
+  font-size: clamp(13px, 3.2vw, 15px);
   font-weight: 600;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .id-row {
@@ -325,9 +354,10 @@ body {
 
 .lang-name {
   font-weight: 500;
-  white-space: nowrap;
+  min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 @media (min-width: 380px) {
@@ -339,21 +369,28 @@ body {
 
 .hint {
   margin: 0;
-  font-size: 12px;
+  font-size: clamp(11px, 2.6vw, 12px);
   color: var(--text-muted);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .nav-btn {
   border: none;
-  padding: 6px 12px;
+  padding: 6px 10px;
   border-radius: var(--radius-pill);
   background: rgba(255, 255, 255, 0.04);
   color: rgba(255, 255, 255, 0.9);
-  font-size: 12px;
+  font-size: clamp(11px, 2.6vw, 12px);
   cursor: pointer;
   transition:
     background var(--transition-fast),
     transform 0.12s ease-out;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .nav-btn--ghost {
@@ -368,11 +405,11 @@ body {
 .primary-btn {
   border-radius: var(--radius-pill);
   border: none;
-  padding: 14px 20px;
+  padding: 14px 16px;
   min-height: 48px;
   background: linear-gradient(145deg, #e0d4ff 0%, #a78bfa 50%, #8b5cf6 100%);
   color: #0f0a1a;
-  font-size: 15px;
+  font-size: clamp(13px, 3.2vw, 15px);
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -381,6 +418,9 @@ body {
   align-items: center;
   justify-content: center;
   gap: 6px;
+  min-width: 0;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
   -webkit-tap-highlight-color: transparent;
   box-shadow:
     0 14px 45px rgba(0, 0, 0, 0.9),
@@ -408,13 +448,16 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.12);
   background: rgba(12, 12, 20, 0.9);
   color: var(--text-main);
-  padding: 8px 16px;
-  font-size: 13px;
+  padding: 8px 14px;
+  font-size: clamp(12px, 2.8vw, 13px);
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 6px;
+  min-width: 0;
+  word-break: break-word;
+  overflow-wrap: break-word;
   transition:
     background var(--transition-fast),
     border-color var(--transition-fast),
@@ -446,6 +489,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+  min-width: 0;
 }
 
 .form-group {
@@ -456,8 +500,10 @@ body {
 }
 
 .field-label {
-  font-size: 13px;
+  font-size: clamp(12px, 2.8vw, 13px);
   color: var(--text-muted);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .onboarding {
@@ -490,8 +536,8 @@ body {
 }
 
 .metallic-title {
-  font-size: 22px;
-  letter-spacing: 0.2em;
+  font-size: clamp(16px, 4.5vw, 22px);
+  letter-spacing: 0.15em;
   text-transform: uppercase;
   background: linear-gradient(
     135deg,
@@ -508,6 +554,9 @@ body {
   text-shadow:
     0 0 18px rgba(255, 255, 255, 0.16),
     0 24px 60px rgba(0, 0, 0, 0.96);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  text-align: center;
 }
 
 .onboarding-text {
@@ -569,8 +618,10 @@ body {
 
 .compare-title {
   margin: 0 0 8px;
-  font-size: 13px;
+  font-size: clamp(12px, 2.8vw, 13px);
   font-weight: 600;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .compare-title--positive {
@@ -585,8 +636,10 @@ body {
   list-style: none;
   padding: 0;
   margin: 0;
-  font-size: 13px;
+  font-size: clamp(12px, 2.8vw, 13px);
   color: var(--text-muted);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .compare-list li + li {

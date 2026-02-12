@@ -9,15 +9,16 @@ const COINGECKO_IDS = {
   BTC: "bitcoin",
   TRX: "tron",
   TON: "the-open-network",
-  LTC: "litecoin",
 };
+
+// xRocket API использует TONCOIN для TON (GET /currencies/available)
+const XROCKET_CURRENCY = { USDT: "USDT", TON: "TONCOIN", BTC: "BTC", TRX: "TRX" };
 
 function roundCryptoAmount(amount, currency) {
   if (currency === "USDT") return Math.round(amount * 100) / 100;
   if (currency === "BTC") return Math.round(amount * 1e8) / 1e8;
   if (currency === "TRX") return Math.round(amount * 100) / 100;
   if (currency === "TON") return Math.round(amount * 100) / 100;
-  if (currency === "LTC") return Math.round(amount * 1e6) / 1e6;
   return Math.round(amount * 100) / 100;
 }
 
@@ -82,7 +83,7 @@ export default async function handler(req, res) {
     return res.status(400).json({ success: false, error: "user_id is required" });
   }
 
-  const allowed = ["USDT", "TON", "BTC", "TRX", "LTC"];
+  const allowed = ["USDT", "TON", "BTC", "TRX"];
   if (!allowed.includes(currency)) {
     return res.status(400).json({ success: false, error: `Unsupported currency: ${currency}` });
   }
@@ -99,10 +100,11 @@ export default async function handler(req, res) {
   const amountInCur = amountInCurrency(usdAmount, currency, rates);
   const amount = roundCryptoAmount(amountInCur, currency);
   const description = (body.description || `PRIVATE SIGNAL SYSTEM — ${usdAmount} USD`).slice(0, 1024);
+  const apiCurrency = XROCKET_CURRENCY[currency] || currency;
 
   const payload = {
     amount,
-    currency,
+    currency: apiCurrency,
     description,
     payload: String(userId),
     numPayments: 1,

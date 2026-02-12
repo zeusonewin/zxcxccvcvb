@@ -251,10 +251,11 @@ if (copyBtn) {
   });
 }
 
-// Open payment screen
+// Open payment screen — ensure networks are rendered so currency+network are set
 const openPaymentBtn = document.querySelector('[data-action="open-payment"]');
 if (openPaymentBtn) {
   openPaymentBtn.addEventListener("click", () => {
+    if (networkGroup) renderNetworks(state.payment.currency, networkGroup, state.payment);
     setActiveScreen("payment");
   });
 }
@@ -279,7 +280,6 @@ const networksByCurrency = {
   TON: ["TON"],
   BTC: ["Bitcoin"],
   TRX: ["TRON"],
-  LTC: ["Litecoin"],
 };
 
 function renderNetworks(currency, networkGroupEl, paymentState) {
@@ -403,12 +403,24 @@ async function createPayment(amountUsd, currency, network, paymentState) {
   }
 }
 
-// First payment button
+// Ensure payment state has network (fallback to first available for currency)
+function ensurePaymentNetwork(paymentState) {
+  if (paymentState.network) return;
+  const nets = networksByCurrency[paymentState.currency] || [];
+  paymentState.network = nets[0] || null;
+}
+
+// First payment button — always create invoice on Pay click
 const payBtn = document.querySelector('[data-action="pay"]');
 if (payBtn) {
   payBtn.addEventListener("click", async () => {
+    ensurePaymentNetwork(state.payment);
     const { currency, network } = state.payment;
-    if (!currency || !network) return;
+    if (!currency) return;
+    if (!network) {
+      alert(t("payment.error") || "Please select a network.");
+      return;
+    }
 
     payBtn.disabled = true;
     payBtn.textContent = t("payment.creating") || "Creating invoice...";
@@ -493,20 +505,26 @@ function startProgressAnimation() {
   }, stepDuration);
 }
 
-// Server ready OK button
+// Server ready OK button — open second payment and ensure networks are set
 const serverReadyBtn = document.querySelector('[data-action="server-ready-ok"]');
 if (serverReadyBtn) {
   serverReadyBtn.addEventListener("click", () => {
+    if (networkGroup2) renderNetworks(state.secondPayment.currency, networkGroup2, state.secondPayment);
     setActiveScreen("second-payment");
   });
 }
 
-// Second payment button
+// Second payment button — always create invoice on Pay click
 const paySecondBtn = document.querySelector('[data-action="pay-second"]');
 if (paySecondBtn) {
   paySecondBtn.addEventListener("click", async () => {
+    ensurePaymentNetwork(state.secondPayment);
     const { currency, network } = state.secondPayment;
-    if (!currency || !network) return;
+    if (!currency) return;
+    if (!network) {
+      alert(t("payment.error") || "Please select a network.");
+      return;
+    }
 
     paySecondBtn.disabled = true;
     paySecondBtn.textContent = t("payment.creating") || "Creating invoice...";
