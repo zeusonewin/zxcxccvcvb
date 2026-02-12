@@ -331,7 +331,7 @@ if (networkGroup2) {
 }
 
 // Payment function
-async function createPayment(amount, currency, network, paymentState) {
+async function createPayment(amountUsd, currency, network, paymentState) {
   const telegramUserId = tg?.initDataUnsafe?.user?.id;
   if (!telegramUserId) {
     alert(t("payment.error") || "Error: Failed to get user data. Please reload the app.");
@@ -349,6 +349,7 @@ async function createPayment(amount, currency, network, paymentState) {
         user_id: telegramUserId,
         currency: currency,
         network: network,
+        amount_usd: amountUsd,
       }),
     });
 

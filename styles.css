@@ -210,11 +210,59 @@ body {
   margin: 4px 0 8px;
 }
 
-.language-list {
-  display: flex;
+.language-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 10px;
-  justify-content: center;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
+  width: 100%;
+  max-width: 320px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.lang-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(12, 12, 22, 0.9);
+  color: var(--text-main);
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.12s ease;
+  text-align: left;
+}
+
+.lang-option:active {
+  transform: scale(0.98);
+}
+
+.lang-option:hover {
+  background: rgba(25, 25, 40, 0.95);
+  border-color: rgba(155, 132, 255, 0.25);
+}
+
+.lang-flag {
+  font-size: 20px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.lang-name {
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (min-width: 380px) {
+  .language-grid {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 400px;
+  }
 }
 
 .hint {
