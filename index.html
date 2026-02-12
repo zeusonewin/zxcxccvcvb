@@ -4,13 +4,17 @@
     <meta charset="UTF-8" />
     <meta
       name="viewport"
-      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+      content="width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=1, viewport-fit=cover"
     />
+    <meta name="theme-color" content="#050508" />
     <title>PRIVATE SIGNAL SYSTEM</title>
     <meta
       name="description"
       content="PRIVATE SIGNAL SYSTEM — personal signal bots for our partners."
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <!-- Telegram WebApp SDK -->
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <link rel="stylesheet" href="styles.css" />
@@ -107,12 +111,13 @@
         <section class="screen" data-screen="home">
           <div class="card card--stacked">
             <h1 class="title">PRIVATE SIGNAL SYSTEM</h1>
-            <div class="id-row">
-              <span class="id-label" data-i18n="home.idLabel">Your personal ID:</span>
-              <span class="id-value" data-user-id>------</span>
-              <button class="pill-btn pill-btn--small" data-action="copy-id" data-i18n="home.copyButton">
-                Copy
-              </button>
+            <div class="id-row id-row--compact">
+              <span class="id-label" data-i18n="home.idLabel">ID</span>
+              <span class="id-value" data-user-id>—</span>
+              <button type="button" class="pill-btn pill-btn--small" data-action="copy-id" data-i18n="home.copyButton">Copy</button>
+            </div>
+            <div class="home-actions">
+              <button type="button" class="pill-btn pill-btn--outline" data-action="open-language" data-i18n="home.changeLanguage">Change language</button>
             </div>
 
             <div class="divider"></div>
@@ -157,8 +162,11 @@
                 <button class="pill-btn pill-btn--select" data-currency="BTC">
                   BTC
                 </button>
-                <button class="pill-btn pill-btn--select" data-currency="ETH">
-                  ETH
+                <button class="pill-btn pill-btn--select" data-currency="TRX">
+                  TRX
+                </button>
+                <button class="pill-btn pill-btn--select" data-currency="LTC">
+                  LTC
                 </button>
               </div>
             </div>
@@ -184,7 +192,24 @@
           </div>
         </section>
 
-        <!-- Loading Screen (after first payment) -->
+        <!-- After payment: wait for user to pay then click "I've paid" -->
+        <section class="screen" data-screen="after-payment">
+          <div class="card card--stacked">
+            <h1 class="title" data-i18n="afterPayment.title">Invoice created</h1>
+            <p class="body-text" data-i18n="afterPayment.instruction">
+              Pay the invoice in @xrocket, then tap the button below.
+            </p>
+            <p class="hint" data-i18n="afterPayment.hint">Loading will start only after payment is confirmed.</p>
+            <button class="primary-btn primary-btn--full" data-action="check-payment" data-i18n="afterPayment.checkButton">
+              I've paid — check
+            </button>
+            <p class="body-text body-text--muted error-msg hidden" data-i18n="afterPayment.notPaid" id="after-payment-error">
+              Payment not received. Please pay the invoice first.
+            </p>
+          </div>
+        </section>
+
+        <!-- Loading Screen (only after payment confirmed) -->
         <section class="screen" data-screen="loading">
           <div class="card card--centered">
             <h1 class="title" data-i18n="loading.title">Server Preparation</h1>
@@ -235,8 +260,11 @@
                 <button class="pill-btn pill-btn--select" data-currency="BTC">
                   BTC
                 </button>
-                <button class="pill-btn pill-btn--select" data-currency="ETH">
-                  ETH
+                <button class="pill-btn pill-btn--select" data-currency="TRX">
+                  TRX
+                </button>
+                <button class="pill-btn pill-btn--select" data-currency="LTC">
+                  LTC
                 </button>
               </div>
             </div>

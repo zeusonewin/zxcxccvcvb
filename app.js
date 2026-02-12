@@ -8,6 +8,7 @@ const state = {
   current: "language",
   language: localStorage.getItem("pss_language") || null,
   userId: null,
+  fromLanguageChange: false,
   payment: {
     currency: "USDT",
     network: null,
@@ -135,8 +136,14 @@ languageButtons.forEach((btn) => {
     const lang = btn.getAttribute("data-lang");
     state.language = lang;
     localStorage.setItem("pss_language", lang);
-    setActiveScreen("onboarding");
     updateTexts();
+    if (state.fromLanguageChange) {
+      state.fromLanguageChange = false;
+      setActiveScreen("home", { pushHistory: false });
+      state.history = [];
+    } else {
+      setActiveScreen("onboarding");
+    }
   });
 });
 
@@ -252,6 +259,15 @@ if (openPaymentBtn) {
   });
 }
 
+// Change language from main menu
+const openLanguageBtn = document.querySelector('[data-action="open-language"]');
+if (openLanguageBtn) {
+  openLanguageBtn.addEventListener("click", () => {
+    state.fromLanguageChange = true;
+    setActiveScreen("language");
+  });
+}
+
 // Currency and network selection
 const currencyGroup = document.querySelector("[data-currency-group]");
 const networkGroup = document.querySelector("[data-network-group]");
@@ -263,6 +279,7 @@ const networksByCurrency = {
   TON: ["TON"],
   BTC: ["Bitcoin"],
   TRX: ["TRON"],
+  LTC: ["Litecoin"],
 };
 
 function renderNetworks(currency, networkGroupEl, paymentState) {
@@ -399,15 +416,52 @@ if (payBtn) {
     const success = await createPayment(50, currency, network, state.payment);
     
     if (success) {
-      // Show loading screen after payment
-      setTimeout(() => {
-        setActiveScreen("loading");
-        startProgressAnimation();
-      }, 1000);
+      setActiveScreen("after-payment");
+      const errEl = document.getElementById("after-payment-error");
+      if (errEl) errEl.classList.add("hidden");
     } else {
       payBtn.disabled = false;
       payBtn.textContent = `${t("payment.payButton") || "Pay"} $50`;
     }
+  });
+}
+
+// After payment: "I've paid" — check payment, then show loading only if paid
+const checkPaymentBtn = document.querySelector('[data-action="check-payment"]');
+if (checkPaymentBtn) {
+  checkPaymentBtn.addEventListener("click", async () => {
+    const telegramUserId = tg?.initDataUnsafe?.user?.id;
+    if (!telegramUserId) {
+      alert(t("payment.error") || "Error: user data not available.");
+      return;
+    }
+    checkPaymentBtn.disabled = true;
+    checkPaymentBtn.textContent = "...";
+    const apiUrl = getApiUrl();
+    try {
+      const res = await fetch(`${apiUrl}/api/check-payment`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ user_id: telegramUserId }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (data.paid) {
+        setActiveScreen("loading");
+        startProgressAnimation();
+      } else {
+        const errEl = document.getElementById("after-payment-error");
+        if (errEl) errEl.classList.remove("hidden");
+        checkPaymentBtn.textContent = t("afterPayment.checkButton") || "I've paid — check";
+      }
+    } catch (e) {
+      const errEl = document.getElementById("after-payment-error");
+      if (errEl) {
+        errEl.textContent = t("payment.error") || "Connection error.";
+        errEl.classList.remove("hidden");
+      }
+      checkPaymentBtn.textContent = t("afterPayment.checkButton") || "I've paid — check";
+    }
+    checkPaymentBtn.disabled = false;
   });
 }
 

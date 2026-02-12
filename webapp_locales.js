@@ -31,8 +31,9 @@ const LOCALES = {
     },
     home: {
       title: "PRIVATE SIGNAL SYSTEM",
-      idLabel: "Your personal ID:",
+      idLabel: "ID",
       copyButton: "Copy",
+      changeLanguage: "Change language",
       accessTitle: "Access Requirements",
       accessText1:
         "To prevent unauthorized users from accessing our product, we have implemented a security measure. You need to pay a one-time fee of",
@@ -49,6 +50,13 @@ const LOCALES = {
       payButton: "Pay",
       creating: "Creating invoice...",
       error: "Error: Failed to create invoice",
+    },
+    afterPayment: {
+      title: "Invoice created",
+      instruction: "Pay the invoice in @xrocket, then tap the button below.",
+      hint: "Loading will start only after payment is confirmed.",
+      checkButton: "I've paid — check",
+      notPaid: "Payment not received. Please pay the invoice first.",
     },
     loading: {
       title: "Server Preparation",
@@ -105,8 +113,9 @@ const LOCALES = {
     },
     home: {
       title: "PRIVATE SIGNAL SYSTEM",
-      idLabel: "Ваш персональный ID:",
+      idLabel: "ID",
       copyButton: "Скопировать",
+      changeLanguage: "Сменить язык",
       accessTitle: "Условие получения доступа",
       accessText1:
         "Чтобы не допустить случайных пользователей в наш продукт, мы вводим меру безопасности. Вам необходимо оплатить единоразовый счёт в размере",
@@ -124,6 +133,13 @@ const LOCALES = {
       payButton: "Оплатить",
       creating: "Создание счёта...",
       error: "Ошибка: Не удалось создать счёт",
+    },
+    afterPayment: {
+      title: "Счёт создан",
+      instruction: "Оплатите счёт в @xrocket, затем нажмите кнопку ниже.",
+      hint: "Загрузка начнётся только после подтверждения оплаты.",
+      checkButton: "Я оплатил — проверить",
+      notPaid: "Оплата не получена. Сначала оплатите счёт.",
     },
     loading: {
       title: "Подготовка сервера",
@@ -179,8 +195,9 @@ const LOCALES = {
     },
     home: {
       title: "PRIVATE SIGNAL SYSTEM",
-      idLabel: "आपका व्यक्तिगत ID:",
+      idLabel: "ID",
       copyButton: "कॉपी करें",
+      changeLanguage: "भाषा बदलें",
       accessTitle: "एक्सेस आवश्यकताएं",
       accessText1:
         "अनधिकृत उपयोगकर्ताओं को हमारे उत्पाद तक पहुंचने से रोकने के लिए, हमने एक सुरक्षा उपाय लागू किया है। आपको एक बार की फीस का भुगतान करना होगा",
@@ -198,6 +215,13 @@ const LOCALES = {
       payButton: "भुगतान करें",
       creating: "इनवॉइस बनाया जा रहा है...",
       error: "त्रुटि: इनवॉइस बनाने में विफल",
+    },
+    afterPayment: {
+      title: "इनवॉइस बन गया",
+      instruction: "@xrocket में भुगतान करें, फिर नीचे बटन दबाएं।",
+      hint: "भुगतान पुष्टि के बाद ही लोडिंग शुरू होगी।",
+      checkButton: "मैंने भुगतान किया — जांचें",
+      notPaid: "भुगतान प्राप्त नहीं हुआ। पहले इनवॉइस भुगतान करें।",
     },
     loading: {
       title: "सर्वर तैयारी",
@@ -253,8 +277,9 @@ const LOCALES = {
     },
     home: {
       title: "PRIVATE SIGNAL SYSTEM",
-      idLabel: "Seu ID pessoal:",
+      idLabel: "ID",
       copyButton: "Copiar",
+      changeLanguage: "Mudar idioma",
       accessTitle: "Requisitos de Acesso",
       accessText1:
         "Para impedir que usuários não autorizados acessem nosso produto, implementamos uma medida de segurança. Você precisa pagar uma taxa única de",
@@ -272,6 +297,13 @@ const LOCALES = {
       payButton: "Pagar",
       creating: "Criando fatura...",
       error: "Erro: Falha ao criar fatura",
+    },
+    afterPayment: {
+      title: "Fatura criada",
+      instruction: "Pague a fatura no @xrocket e toque no botão abaixo.",
+      hint: "O carregamento só inicia após confirmação do pagamento.",
+      checkButton: "Já paguei — verificar",
+      notPaid: "Pagamento não recebido. Pague a fatura primeiro.",
     },
     loading: {
       title: "Preparação do Servidor",
@@ -327,8 +359,9 @@ const LOCALES = {
     },
     home: {
       title: "PRIVATE SIGNAL SYSTEM",
-      idLabel: "Sizning shaxsiy ID:",
+      idLabel: "ID",
       copyButton: "Nusxalash",
+      changeLanguage: "Tilni o'zgartirish",
       accessTitle: "Kirish Talablari",
       accessText1:
         "Ruxsatsiz foydalanuvchilarning mahsulotimizga kirishini oldini olish uchun biz xavfsizlik chorasini joriy qildik. Siz bir martalik to'lovni to'lashingiz kerak",
@@ -346,6 +379,13 @@ const LOCALES = {
       payButton: "To'lash",
       creating: "Hisob-faktura yaratilmoqda...",
       error: "Xatolik: Hisob-faktura yaratib bo'lmadi",
+    },
+    afterPayment: {
+      title: "Hisob-faktura yaratildi",
+      instruction: "@xrocket da to'lang, keyin quyidagi tugmani bosing.",
+      hint: "To'lov tasdiqlangandan keyin yuklash boshlanadi.",
+      checkButton: "To'ladim — tekshirish",
+      notPaid: "To'lov qabul qilinmadi. Avval hisob-fakturani to'lang.",
     },
     loading: {
       title: "Server Tayyorlash",
@@ -401,8 +441,9 @@ const LOCALES = {
     },
     home: {
       title: "PRIVATE SIGNAL SYSTEM",
-      idLabel: "Kişisel ID'niz:",
+      idLabel: "ID",
       copyButton: "Kopyala",
+      changeLanguage: "Dili değiştir",
       accessTitle: "Erişim Gereksinimleri",
       accessText1:
         "Yetkisiz kullanıcıların ürünümüze erişmesini önlemek için bir güvenlik önlemi uyguladık. Tek seferlik bir ücret ödemeniz gerekiyor",
@@ -420,6 +461,13 @@ const LOCALES = {
       payButton: "Öde",
       creating: "Fatura oluşturuluyor...",
       error: "Hata: Fatura oluşturulamadı",
+    },
+    afterPayment: {
+      title: "Fatura oluşturuldu",
+      instruction: "@xrocket'te faturayı ödeyin, ardından aşağıdaki düğmeye dokunun.",
+      hint: "Yükleme yalnızca ödeme onaylandıktan sonra başlar.",
+      checkButton: "Ödedim — kontrol et",
+      notPaid: "Ödeme alınmadı. Önce faturayı ödeyin.",
     },
     loading: {
       title: "Sunucu Hazırlığı",
