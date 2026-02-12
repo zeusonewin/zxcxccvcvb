@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="ru" data-api-url="">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+    />
+    <title>PRIVATE SIGNAL SYSTEM</title>
+    <meta
+      name="description"
+      content="PRIVATE SIGNAL SYSTEM — персональные сигнальные боты для наших партнёров."
+    />
+    <!-- Telegram WebApp SDK -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="app" class="app-root">
+      <!-- Глобальная навигация -->
+      <header class="app-header">
+        <button class="nav-btn nav-btn--ghost" data-action="back">
+          ← Назад
+        </button>
+        <div class="app-header__title">PRIVATE SIGNAL SYSTEM</div>
+        <button class="nav-btn nav-btn--ghost" data-action="home">
+          Главное меню
+        </button>
+      </header>
+
+      <main class="app-main">
+        <!-- Экран выбора языка -->
+        <section class="screen screen--active" data-screen="language">
+          <div class="card card--centered">
+            <h1 class="title title--accent">PRIVATE SIGNAL SYSTEM</h1>
+            <p class="subtitle">Выберите язык интерфейса</p>
+            <div class="language-list">
+              <button class="pill-btn" data-lang="ru">Русский</button>
+              <button class="pill-btn" data-lang="en">English</button>
+            </div>
+            <p class="hint">
+              Язык можно будет изменить позднее. Выбор сохраняется для
+              последующих входов.
+            </p>
+          </div>
+        </section>
+
+        <!-- Onboarding — слайдер -->
+        <section class="screen" data-screen="onboarding">
+          <div class="onboarding">
+            <div class="onboarding-track" data-onboarding-track>
+              <!-- Слайд 1 -->
+              <article class="onboarding-slide onboarding-slide--centered">
+                <div class="metallic-title">
+                  PRIVATE SIGNAL SYSTEM
+                </div>
+                <p class="onboarding-text">
+                  Персональные сигнальные боты для наших партнёров
+                  с точностью в 100%.
+                </p>
+                <div class="swipe-hint">
+                  Листните влево, чтобы продолжить
+                  <span class="swipe-arrow">⟶</span>
+                </div>
+              </article>
+
+              <!-- Слайд 2 -->
+              <article class="onboarding-slide">
+                <div class="compare-grid">
+                  <div class="compare-block">
+                    <h2 class="compare-title compare-title--positive">
+                      Плюсы персонального бота
+                    </h2>
+                    <ul class="compare-list">
+                      <li>Установка бота только для вас</li>
+                      <li>Гарантированная точность 100%</li>
+                      <li>Без колебаний точности</li>
+                    </ul>
+                  </div>
+                  <div class="compare-block">
+                    <h2 class="compare-title compare-title--negative">
+                      Минусы бесплатного
+                    </h2>
+                    <ul class="compare-list">
+                      <li>Большое количество пользователей</li>
+                      <li>Логичное снижение точности под нагрузкой</li>
+                      <li>Малое количество игр</li>
+                      <li>Необходимость регистрации нового аккаунта</li>
+                    </ul>
+                  </div>
+                </div>
+                <button class="primary-btn primary-btn--full" data-action="start">
+                  Начать
+                </button>
+              </article>
+            </div>
+            <div class="onboarding-dots">
+              <span class="dot dot--active" data-dot="0"></span>
+              <span class="dot" data-dot="1"></span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Главное меню -->
+        <section class="screen" data-screen="home">
+          <div class="card card--stacked">
+            <h1 class="title">PRIVATE SIGNAL SYSTEM</h1>
+            <div class="id-row">
+              <span class="id-label">Ваш персональный ID:</span>
+              <span class="id-value" data-user-id>------</span>
+              <button class="pill-btn pill-btn--small" data-action="copy-id">
+                Скопировать
+              </button>
+            </div>
+
+            <div class="divider"></div>
+
+            <section class="section">
+              <h2 class="section-title">Условие получения доступа</h2>
+              <p class="body-text">
+                Чтобы не допустить случайных пользователей в наш продукт,
+                мы вводим меру безопасности. Вам необходимо оплатить единоразовый
+                счет в размере <strong>50$</strong>.
+              </p>
+              <p class="body-text">
+                Эта сумма пойдёт на аренду сервера для вашего персонального бота
+                сроком на <strong>12 месяцев</strong>.
+              </p>
+              <p class="body-text body-text--muted">
+                Оплата проводится в криптовалюте.
+              </p>
+              <button class="primary-btn primary-btn--full" data-action="open-payment">
+                CryptoPay
+              </button>
+            </section>
+          </div>
+        </section>
+
+        <!-- Экран оплаты -->
+        <section class="screen" data-screen="payment">
+          <div class="card card--stacked">
+            <h1 class="title">Оплата доступа</h1>
+            <p class="body-text">
+              Выберите криптовалюту и сеть для перевода.
+            </p>
+
+            <div class="form-group">
+              <label class="field-label">Выбор криптовалюты</label>
+              <div class="pill-group" data-currency-group>
+                <button class="pill-btn pill-btn--select pill-btn--active" data-currency="USDT">
+                  USDT
+                </button>
+                <button class="pill-btn pill-btn--select" data-currency="TON">
+                  TON
+                </button>
+                <button class="pill-btn pill-btn--select" data-currency="BTC">
+                  BTC
+                </button>
+                <button class="pill-btn pill-btn--select" data-currency="ETH">
+                  ETH
+                </button>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="field-label">Выбор сети отправки</label>
+              <div class="pill-group" data-network-group>
+                <!-- сети заполняются динамически в app.js в зависимости от валюты -->
+              </div>
+            </div>
+
+            <p class="hint">
+              После подтверждения вы будете перенаправлены в @xrocket
+              с заполненными реквизитами платежа.
+            </p>
+
+            <button
+              class="primary-btn primary-btn--full"
+              data-action="pay"
+            >
+              Оплатить 50$
+            </button>
+          </div>
+        </section>
+      </main>
+
+      <!-- Фоновые элементы -->
+      <div class="gradient-orb gradient-orb--top"></div>
+      <div class="gradient-orb gradient-orb--bottom"></div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
+

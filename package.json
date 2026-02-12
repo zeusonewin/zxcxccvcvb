@@ -1,0 +1,12 @@
+{
+  "name": "private-signal-system-webapp",
+  "version": "1.0.0",
+  "description": "Telegram WebApp для PRIVATE SIGNAL SYSTEM с премиальным минималистичным интерфейсом.",
+  "scripts": {
+    "start": "npx http-server . -p 5173"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {}
+}
