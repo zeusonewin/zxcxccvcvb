@@ -1,16 +1,8 @@
 const LOCALES = {
-  ru: {
-    selectLang: "Выберите язык",
-    start: "Начать",
-    pay: "Оплатить",
-    crypto: "Криптовалюта",
-    network: "Сеть",
-  },
-  en: {
-    selectLang: "Select language",
-    start: "Start",
-    pay: "Pay",
-    crypto: "Cryptocurrency",
-    network: "Network",
-  }
+  ru: { selectLang:"Выберите язык", pay:"Оплатить" },
+  en: { selectLang:"Select language", pay:"Pay" },
+  hi: { selectLang:"भाषा चुनें", pay:"भुगतान करें" },
+  pt: { selectLang:"Selecione o idioma", pay:"Pagar" },
+  uz: { selectLang:"Tilni tanlang", pay:"To‘lash" },
+  tr: { selectLang:"Dil seçin", pay:"Öde" },
 };
