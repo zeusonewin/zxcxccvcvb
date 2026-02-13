@@ -315,7 +315,7 @@ body {
   gap: 10px;
   margin-bottom: 20px;
   width: 100%;
-  max-width: 320px;
+  max-width: 280px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -360,12 +360,7 @@ body {
   white-space: nowrap;
 }
 
-@media (min-width: 380px) {
-  .language-grid {
-    grid-template-columns: repeat(3, 1fr);
-    max-width: 400px;
-  }
-}
+/* Языки: всегда 3 ряда по 2 — всё помещается */
 
 .hint {
   margin: 0;

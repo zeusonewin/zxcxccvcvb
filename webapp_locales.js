@@ -18,6 +18,8 @@ const LOCALES = {
           "Bot installation exclusively for you",
           "Guaranteed 100% accuracy",
           "No accuracy fluctuations",
+          "Signals for 22 games",
+          "Help 24/7",
         ],
         freeTitle: "Free Bot Drawbacks",
         freeItems: [
@@ -100,6 +102,8 @@ const LOCALES = {
           "Установка бота только для вас",
           "Гарантированная точность 100%",
           "Без колебаний точности",
+          "Сигналы для 22 игр",
+          "Помощь 24/7",
         ],
         freeTitle: "Минусы бесплатного",
         freeItems: [
@@ -182,6 +186,8 @@ const LOCALES = {
           "केवल आपके लिए बॉट स्थापना",
           "100% सटीकता की गारंटी",
           "कोई सटीकता उतार-चढ़ाव नहीं",
+          "22 गेम्स के लिए सिग्नल",
+          "24/7 सहायता",
         ],
         freeTitle: "मुफ्त बॉट के नुकसान",
         freeItems: [
@@ -264,6 +270,8 @@ const LOCALES = {
           "Instalação do bot exclusivamente para você",
           "Precisão garantida de 100%",
           "Sem flutuações de precisão",
+          "Sinais para 22 jogos",
+          "Suporte 24/7",
         ],
         freeTitle: "Desvantagens do Bot Gratuito",
         freeItems: [
@@ -346,6 +354,8 @@ const LOCALES = {
           "Bot faqat siz uchun o'rnatiladi",
           "100% aniqlik kafolati",
           "Aniqlik o'zgarishlari yo'q",
+          "22 ta o'yin uchun signallar",
+          "24/7 yordam",
         ],
         freeTitle: "Bepul Botning Kamchiliklari",
         freeItems: [
@@ -428,6 +438,8 @@ const LOCALES = {
           "Bot yalnızca sizin için kurulum",
           "%100 doğruluk garantisi",
           "Doğruluk dalgalanmaları yok",
+          "22 oyun için sinyaller",
+          "7/24 yardım",
         ],
         freeTitle: "Ücretsiz Botun Dezavantajları",
         freeItems: [
